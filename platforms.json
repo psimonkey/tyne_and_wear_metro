@@ -1,0 +1,1564 @@
+{
+    "APT": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.7111200094223,
+                "latitude": 55.0357666015625,
+                "x": 166,
+                "y": 128,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.71116101741791,
+                "latitude": 55.035758972168,
+                "x": 166,
+                "y": 144,
+                "d": "W"
+            }
+        }
+    ],
+    "BDE": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.46631801128387,
+                "latitude": 54.9745063781738,
+                "x": 1854,
+                "y": 590,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.4648909568786599,
+                "latitude": 54.974048614502,
+                "x": 1854,
+                "y": 608,
+                "d": "W"
+            }
+        }
+    ],
+    "BFT": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.67805397510529,
+                "latitude": 55.0139694213867,
+                "x": 338,
+                "y": 128,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.67753899097443,
+                "latitude": 55.0138282775879,
+                "x": 338,
+                "y": 144,
+                "d": "W"
+            }
+        }
+    ],
+    "BTN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.56791794300079,
+                "latitude": 55.0137672424316,
+                "x": 1242,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.56807601451874,
+                "latitude": 55.0138397216797,
+                "x": 1242,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "BYK": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.58042895793915,
+                "latitude": 54.9760818481445,
+                "x": 1245,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.58040797710419,
+                "latitude": 54.976001739502,
+                "x": 1245,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "BYW": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.46061599254608,
+                "latitude": 54.9595756530762,
+                "x": 1873,
+                "y": 703,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.46058797836304,
+                "latitude": 54.9594879150391,
+                "x": 1873,
+                "y": 720,
+                "d": "W"
+            }
+        }
+    ],
+    "CAL": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.70340096950531,
+                "latitude": 55.0277938842773,
+                "x": 252,
+                "y": 128,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.70358598232269,
+                "latitude": 55.0278015136719,
+                "x": 252,
+                "y": 144,
+                "d": "W"
+            }
+        }
+    ],
+    "CEN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.61665904521942,
+                "latitude": 54.9690055847168,
+                "x": 951,
+                "y": 493,
+                "d": "D"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.61688005924225,
+                "latitude": 54.9690322875977,
+                "x": 912,
+                "y": 493,
+                "d": "U"
+            }
+        }
+    ],
+    "CHI": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.43210196495056,
+                "latitude": 54.9866714477539,
+                "x": 2119,
+                "y": 590,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.43195402622223,
+                "latitude": 54.9866752624512,
+                "x": 2119,
+                "y": 608,
+                "d": "W"
+            }
+        }
+    ],
+    "CRD": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.57436203956604,
+                "latitude": 54.981819152832,
+                "x": 1366,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.57393300533295,
+                "latitude": 54.981746673584,
+                "x": 1366,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "CUL": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.43614995479584,
+                "latitude": 55.0348205566406,
+                "x": 2238,
+                "y": 286,
+                "d": "N"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.43630301952362,
+                "latitude": 55.0347747802734,
+                "x": 2256,
+                "y": 286,
+                "d": "S"
+            }
+        }
+    ],
+    "EBO": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.42017805576324,
+                "latitude": 54.9464454650879,
+                "x": 2018,
+                "y": 703,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.42036497592926,
+                "latitude": 54.9463882446289,
+                "x": 2018,
+                "y": 720,
+                "d": "W"
+            }
+        }
+    ],
+    "FAW": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.64502501487732,
+                "latitude": 55.0135612487793,
+                "x": 508,
+                "y": 128,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.64333403110504,
+                "latitude": 55.0136642456055,
+                "x": 508,
+                "y": 144,
+                "d": "W"
+            }
+        }
+    ],
+    "FEL": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.57171094417572,
+                "latitude": 54.9531631469727,
+                "x": 1316,
+                "y": 598,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.57176804542542,
+                "latitude": 54.9531211853027,
+                "x": 1316,
+                "y": 616,
+                "d": "W"
+            }
+        }
+    ],
+    "FGT": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.4857039451599099,
+                "latitude": 54.9575386047363,
+                "x": 1708,
+                "y": 703,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.48566102981567,
+                "latitude": 54.9574508666992,
+                "x": 1708,
+                "y": 720,
+                "d": "W"
+            }
+        }
+    ],
+    "FLE": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.5784250497818,
+                "latitude": 55.0100936889648,
+                "x": 1069,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.57858395576477,
+                "latitude": 55.010196685791,
+                "x": 1069,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "GHD": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.60487496852875,
+                "latitude": 54.9616394042969,
+                "x": 1067,
+                "y": 598,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.60541296005249,
+                "latitude": 54.9615058898926,
+                "x": 1067,
+                "y": 616,
+                "d": "W"
+            }
+        }
+    ],
+    "GST": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.58827996253967,
+                "latitude": 54.9577674865723,
+                "x": 1196,
+                "y": 598,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.58827602863312,
+                "latitude": 54.9576988220215,
+                "x": 1196,
+                "y": 616,
+                "d": "W"
+            }
+        }
+    ],
+    "HAY": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.61360001564026,
+                "latitude": 54.9776840209961,
+                "x": 884,
+                "y": 375,
+                "d": "D"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.61377704143524,
+                "latitude": 54.977725982666,
+                "x": 845,
+                "y": 375,
+                "d": "U"
+            }
+        }
+    ],
+    "HDR": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.51580500602722,
+                "latitude": 54.9923477172852,
+                "x": 1726,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.51575100421906,
+                "latitude": 54.9922676086426,
+                "x": 1726,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "HEB": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.52189302444458,
+                "latitude": 54.974910736084,
+                "x": 1678,
+                "y": 590,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.52054297924042,
+                "latitude": 54.975643157959,
+                "x": 1678,
+                "y": 608,
+                "d": "W"
+            }
+        }
+    ],
+    "HOW": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.49497699737549,
+                "latitude": 54.9958038330078,
+                "x": 1846,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.49337601661682,
+                "latitude": 54.9960098266602,
+                "x": 1846,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "HTH": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.55611503124237,
+                "latitude": 54.9516105651855,
+                "x": 1449,
+                "y": 598,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.55591404438019,
+                "latitude": 54.9515113830566,
+                "x": 1449,
+                "y": 616,
+                "d": "W"
+            }
+        }
+    ],
+    "ILF": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.6106790304184,
+                "latitude": 55.0002632141113,
+                "x": 798,
+                "y": 227,
+                "d": "D"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.61086702346802,
+                "latitude": 55.0001945495605,
+                "x": 756,
+                "y": 227,
+                "d": "U"
+            }
+        }
+    ],
+    "JAR": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.49346601963043,
+                "latitude": 54.979606628418,
+                "x": 1765,
+                "y": 590,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.49348795413971,
+                "latitude": 54.9794998168945,
+                "x": 1765,
+                "y": 608,
+                "d": "W"
+            }
+        }
+    ],
+    "JES": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.60543596744537,
+                "latitude": 54.9830513000488,
+                "x": 855,
+                "y": 326,
+                "d": "D"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.60568404197693,
+                "latitude": 54.9831275939941,
+                "x": 814,
+                "y": 326,
+                "d": "U"
+            }
+        }
+    ],
+    "KSP": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.66697895526886,
+                "latitude": 55.0144004821777,
+                "x": 422,
+                "y": 128,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.66512405872345,
+                "latitude": 55.0144157409668,
+                "x": 422,
+                "y": 144,
+                "d": "W"
+            }
+        }
+    ],
+    "LBN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.59151899814606,
+                "latitude": 55.0088806152344,
+                "x": 897,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.59150803089142,
+                "latitude": 55.0089683532715,
+                "x": 897,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "MAN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.60424995422363,
+                "latitude": 54.9739990234375,
+                "x": 1126,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.60444605350494,
+                "latitude": 54.9737701416016,
+                "x": 1126,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "MLF": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.40093600749969,
+                "latitude": 54.9065208435059,
+                "x": 1985,
+                "y": 1012,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.40122997760773,
+                "latitude": 54.9065322875977,
+                "x": 1985,
+                "y": 994,
+                "d": "E"
+            }
+        }
+    ],
+    "MSN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.45829999446869,
+                "latitude": 55.042163848877,
+                "x": 2100,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.4581160545349099,
+                "latitude": 55.0423278808594,
+                "x": 2100,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "MSP": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.38363802433014,
+                "latitude": 54.9110832214355,
+                "x": 2256,
+                "y": 845,
+                "d": "S"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.38380897045135,
+                "latitude": 54.911075592041,
+                "x": 2238,
+                "y": 845,
+                "d": "N"
+            }
+        }
+    ],
+    "MTS": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.61390995979309,
+                "latitude": 54.9737586975098,
+                "x": 917,
+                "y": 433,
+                "d": "D"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.61397504806519,
+                "latitude": 54.9738960266113,
+                "x": 875,
+                "y": 433,
+                "d": "U"
+            }
+        }
+    ],
+    "MTW": [
+        {
+            "platformNumber": 3,
+            "direction": "IN",
+            "helperText": "Towards South Shields via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.61388695240021,
+                "latitude": 54.9740982055664,
+                "x": 893,
+                "y": 424,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 4,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.61389195919037,
+                "latitude": 54.974006652832,
+                "x": 903,
+                "y": 443,
+                "d": "W"
+            }
+        }
+    ],
+    "MWL": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.46566104888916,
+                "latitude": 55.0015182495117,
+                "x": 2086,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.46573197841644,
+                "latitude": 55.0016136169434,
+                "x": 2086,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "NPK": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.51973700523376,
+                "latitude": 55.0331954956055,
+                "x": 1586,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.51969599723816,
+                "latitude": 55.0331230163574,
+                "x": 1586,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "NSH": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.4485650062561,
+                "latitude": 55.0084342956543,
+                "x": 2206,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.44869303703308,
+                "latitude": 55.008186340332,
+                "x": 2206,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "PAL": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.41763997077942,
+                "latitude": 54.9127044677734,
+                "x": 1871,
+                "y": 1012,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.41775500774384,
+                "latitude": 54.9128036499023,
+                "x": 1871,
+                "y": 994,
+                "d": "E"
+            }
+        }
+    ],
+    "PCM": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.47502303123474,
+                "latitude": 54.9995498657227,
+                "x": 1966,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.47437298297882,
+                "latitude": 54.9995727539063,
+                "x": 1966,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "PLI": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.38419198989868,
+                "latitude": 54.90234375,
+                "x": 2211,
+                "y": 1012,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.38420796394348,
+                "latitude": 54.9024429321289,
+                "x": 2211,
+                "y": 994,
+                "d": "E"
+            }
+        }
+    ],
+    "PLW": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.54196298122406,
+                "latitude": 54.952709197998,
+                "x": 1562,
+                "y": 598,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.54199194908142,
+                "latitude": 54.9526329040527,
+                "x": 1562,
+                "y": 616,
+                "d": "W"
+            }
+        }
+    ],
+    "PMV": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.54113805294037,
+                "latitude": 55.0236740112305,
+                "x": 1413,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.54113399982452,
+                "latitude": 55.0237731933594,
+                "x": 1413,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "RGC": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.62183701992035,
+                "latitude": 55.012035369873,
+                "x": 680,
+                "y": 128,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.62196004390717,
+                "latitude": 55.0119361877441,
+                "x": 680,
+                "y": 144,
+                "d": "W"
+            }
+        }
+    ],
+    "SBN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.38635098934174,
+                "latitude": 54.9294166564941,
+                "x": 2256,
+                "y": 749,
+                "d": "S"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.3865419626236,
+                "latitude": 54.9294776916504,
+                "x": 2238,
+                "y": 749,
+                "d": "N"
+            }
+        }
+    ],
+    "SFC": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.3828330039978,
+                "latitude": 54.9182090759277,
+                "x": 2256,
+                "y": 795,
+                "d": "S"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.38299298286438,
+                "latitude": 54.9181938171387,
+                "x": 2238,
+                "y": 795,
+                "d": "N"
+            }
+        }
+    ],
+    "SGF": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.60827302932739,
+                "latitude": 55.0056686401367,
+                "x": 771,
+                "y": 179,
+                "d": "D"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.608353972435,
+                "latitude": 55.0058364868164,
+                "x": 729,
+                "y": 179,
+                "d": "U"
+            }
+        }
+    ],
+    "SHL": [
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.44799697399139,
+                "latitude": 54.9042015075684,
+                "x": 1757,
+                "y": 1004,
+                "d": "E"
+            }
+        }
+    ],
+    "SJM": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.62121999263763,
+                "latitude": 54.9744415283203,
+                "x": 826,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.62118995189667,
+                "latitude": 54.9742126464844,
+                "x": 826,
+                "y": 444,
+                "d": "E"
+            }
+        }
+    ],
+    "SMD": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.45541501045227,
+                "latitude": 54.9717483520508,
+                "x": 1941,
+                "y": 590,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.45529103279114,
+                "latitude": 54.9715995788574,
+                "x": 1941,
+                "y": 608,
+                "d": "W"
+            }
+        }
+    ],
+    "SMR": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.50494003295898,
+                "latitude": 55.0369453430176,
+                "x": 1758,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.50551199913025,
+                "latitude": 55.0370025634766,
+                "x": 1758,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "SSS": [
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.43285298347473,
+                "latitude": 54.9976234436035,
+                "x": 2208,
+                "y": 599,
+                "d": "W"
+            }
+        }
+    ],
+    "SUN": [
+        {
+            "platformNumber": 2,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.38221204280853,
+                "latitude": 54.9054946899414,
+                "x": 2256,
+                "y": 946,
+                "d": "S"
+            }
+        },
+        {
+            "platformNumber": 3,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.38245594501495,
+                "latitude": 54.9054718017578,
+                "x": 2238,
+                "y": 946,
+                "d": "N"
+            }
+        }
+    ],
+    "TDK": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.44174098968506,
+                "latitude": 54.9761352539063,
+                "x": 2030,
+                "y": 590,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.4415739774704,
+                "latitude": 54.9760818481445,
+                "x": 2030,
+                "y": 608,
+                "d": "W"
+            }
+        }
+    ],
+    "TYN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.42866194248199,
+                "latitude": 55.017276763916,
+                "x": 2238,
+                "y": 379,
+                "d": "N"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.42908000946045,
+                "latitude": 55.0172348022461,
+                "x": 2256,
+                "y": 379,
+                "d": "S"
+            }
+        }
+    ],
+    "UNI": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.39217698574066,
+                "latitude": 54.9027481079102,
+                "x": 2099,
+                "y": 1012,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.39216697216034,
+                "latitude": 54.9028587341309,
+                "x": 2099,
+                "y": 994,
+                "d": "E"
+            }
+        }
+    ],
+    "WBR": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton",
+            "coordinates": {
+                "longitude": -1.6358939409256,
+                "latitude": 55.0143585205078,
+                "x": 595,
+                "y": 128,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport",
+            "coordinates": {
+                "longitude": -1.63492000102997,
+                "latitude": 55.0141906738281,
+                "x": 595,
+                "y": 144,
+                "d": "W"
+            }
+        }
+    ],
+    "WJS": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Hylton and South Shields",
+            "coordinates": {
+                "longitude": -1.60977804660797,
+                "latitude": 54.9935531616211,
+                "x": 830,
+                "y": 280,
+                "d": "D"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards Airport and St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.6100070476532,
+                "latitude": 54.9935455322266,
+                "x": 787,
+                "y": 280,
+                "d": "U"
+            }
+        }
+    ],
+    "WKG": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.55925798416138,
+                "latitude": 54.9854393005371,
+                "x": 1486,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.55921804904938,
+                "latitude": 54.9853439331055,
+                "x": 1486,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "WMN": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.47653102874756,
+                "latitude": 55.0404167175293,
+                "x": 1931,
+                "y": 142,
+                "d": "W"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James via Whitley Bay",
+            "coordinates": {
+                "longitude": -1.47631394863129,
+                "latitude": 55.0403785705566,
+                "x": 1931,
+                "y": 126,
+                "d": "E"
+            }
+        }
+    ],
+    "WSD": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.5324000120163,
+                "latitude": 54.9897193908691,
+                "x": 1607,
+                "y": 425,
+                "d": "E"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.53239500522614,
+                "latitude": 54.9896240234375,
+                "x": 1607,
+                "y": 444,
+                "d": "W"
+            }
+        }
+    ],
+    "WTL": [
+        {
+            "platformNumber": 1,
+            "direction": "IN",
+            "helperText": "Towards South Shields",
+            "coordinates": {
+                "longitude": -1.44275104999542,
+                "latitude": 55.0398635864258,
+                "x": 2238,
+                "y": 193,
+                "d": "N"
+            }
+        },
+        {
+            "platformNumber": 2,
+            "direction": "OUT",
+            "helperText": "Towards St. James",
+            "coordinates": {
+                "longitude": -1.44278597831726,
+                "latitude": 55.0397644042969,
+                "x": 2256,
+                "y": 193,
+                "d": "S"
+            }
+        }
+    ]
+}
