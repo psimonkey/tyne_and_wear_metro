@@ -3,19 +3,24 @@ import json
 from PIL import Image, ImageDraw
 
 import requests, requests_cache
-# requests_cache.install_cache('metro_cache')
 
 
 class MetroNetwork:
 
-    def __init__(self, api=None):
-        self.api = api or MetroAPI()
+    def __init__(self, update=False):
+        self.api = MetroAPI()
         platforms = self.api.get_platforms()
         self.trains = {}
         self.stations = {name: MetroStation(self, name, code, platforms[code]) for code, name in self.api.get_stations().items()}
-        for name, station in self.stations.items():
-            for number, platform in station.platforms.items():
-                platform.update()
+        if update:
+            self.update()
+    
+    def update(self, station=None, platform=None):
+        if station is None:
+            for name, station in self.stations.items():
+                station.update()
+        else:
+            self.stations[station].update(platform)
 
     def add_train(self, platform, train_data):
         if train_data['trn'] in self.trains:
@@ -28,12 +33,6 @@ class MetroNetwork:
 
     def print_map(self):
         map = MetroMap()
-        # for num, train in self.trains.items():
-        #     print(train)
-        # for code, station in self.stations.items():
-        #     for number, platform in station.platforms.items():
-        #         if platform.x != 0 and platform.y != 0:
-        #             map.add_train(code, (platform.x, platform.y), platform.d)
         for number, train in self.trains.items():
             map.add_train(number, (train.x, train.y), train.d, train.colour)
         map.save()
@@ -50,10 +49,17 @@ class MetroStation:
         if platforms is not None:
             for platform in platforms:
                 self.add_platform(platform)
-    
+
     def add_platform(self, data):
         p = MetroPlatform(self, data)
         self.platforms[p.number] = p
+
+    def update(self, platform=None):
+        if platform is None:
+            for number, platform in self.platforms.items():
+                platform.update()
+        else:
+            self.platforms[platform].update()
     
     def __repr__(self):
         return f'{self.name} ({self.code})\n' + '\n'.join(f'{platform}' for platform in self.platforms.values())
@@ -80,8 +86,7 @@ class MetroPlatform:
             self.arrivals.append(self.station.network.add_train(self, train_data))
     
     def __repr__(self):
-        return f'{self.station.name}, Platform {self.number}'#
-        return f'    Platform {self.number}, {self.text}\n' + '\n'.join(f'        Train {train.id} in {arrival['dueIn']} mins ({arrival['actualPredictedTime']})' for train, arrival in self.arrivals)
+        return f'{self.station.name}, Platform {self.number}'
 
 
 class MetroTrain:
@@ -215,6 +220,7 @@ class MetroMap:
                 for f, t in self.arrow_parts(train['position'], os):
                     draw.line([f, t], fill=train['colour'], width=4)
                 draw.text((train['position'][0] + os[4][0], train['position'][1] + os[4][1]), train['name'], fill=train['colour'])
+            draw.text((200, 400), f'Last Updated {datetime.now().strftime('%Y-%m-%d %H:%M')}', fill='black')
             im.save('map-annoted.png')
         
 
@@ -244,7 +250,9 @@ class MetroAPI:
 
 
 def main():
+    requests_cache.install_cache('metro_cache')
     m = MetroNetwork()
+    m.update()
     m.print_map()
     
 if __name__ == '__main__':
