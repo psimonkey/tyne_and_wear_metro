@@ -1,8 +1,10 @@
 from datetime import datetime
-import json
 from PIL import Image, ImageDraw
+import aiofiles
+import asyncio
+import json
 
-import requests, requests_cache
+import requests #, requests_cache
 
 
 class MetroNetwork:
@@ -11,10 +13,33 @@ class MetroNetwork:
         self.api = MetroAPI()
         platforms = self.api.get_platforms()
         self.trains = {}
-        self.stations = {name: MetroStation(self, name, code, platforms[code]) for code, name in self.api.get_stations().items()}
+        self.station_names = self.api.get_stations()
+        self.stations = {name: MetroStation(self, name, code, platforms[code]) for code, name in self.station_names.items()}
         if update:
             self.update()
-    
+
+    def get_stations_select(self):
+        return [{"label": station.name, "value": station.code} for station in self.stations.values()]
+
+    def get_platforms_select(self, station):
+        return [{"label": platform.text, "value": number} for number, platform in self.stations[station].platforms.items()]
+
+    def valid_station(self, code):
+        if code not in self.stations.keys():
+            return False, f'Invalid station {code}'
+        return True, ''
+
+    def valid_platform(self, code, number):
+        if number not in self.stations[code].platforms.keys():
+            return False, f'Invalid platform {number} for station {code}'
+        return True, ''
+
+    def get_stations(self):
+        return [station.name for station in self.stations.keys()]
+
+    def get_codes(self):
+        return [station.name for station in self.stations.keys()]
+
     def update(self, station=None, platform=None):
         if station is None:
             for name, station in self.stations.items():
@@ -42,7 +67,7 @@ class MetroNetwork:
 
 
 class MetroStation:
-    
+
     def __init__(self, network, name, code, platforms=None):
         self.network, self.name, self.code = network, name, code
         self.platforms = {}
@@ -60,7 +85,7 @@ class MetroStation:
                 platform.update()
         else:
             self.platforms[platform].update()
-    
+
     def __repr__(self):
         return f'{self.name} ({self.code})\n' + '\n'.join(f'{platform}' for platform in self.platforms.values())
 
@@ -84,13 +109,13 @@ class MetroPlatform:
         train_datas = self.station.network.api.get_times(self.station.code, self.number)
         for train_data in train_datas:
             self.arrivals.append(self.station.network.add_train(self, train_data))
-    
+
     def __repr__(self):
         return f'{self.station.name}, Platform {self.number}'
 
 
 class MetroTrain:
-    
+
     OFFSETS = {
         'READY_TO_START': {
             'N': (0, 0),
@@ -136,7 +161,6 @@ class MetroTrain:
         self.line = train_data.get('line', '???')
         self.event = []
         self.arrivals = {}
-        self.position = None
         self.update(train_data, platform)
 
     def update(self, train_data, platform):
@@ -181,7 +205,7 @@ class MetroTrain:
 
     def __repr__(self):
         return f'Train {self.id}, {self.line} line towards {self.destination}, last reported {self.position[0]} {self.position[1]}'
-    
+
 
 class MetroMap:
 
@@ -221,8 +245,8 @@ class MetroMap:
                     draw.line([f, t], fill=train['colour'], width=4)
                 draw.text((train['position'][0] + os[4][0], train['position'][1] + os[4][1]), train['name'], fill=train['colour'])
             draw.text((200, 400), f'Last Updated {datetime.now().strftime('%Y-%m-%d %H:%M')}', fill='black')
-            im.save('map-annoted.png')
-        
+            im.save('map-annotated.png')
+
 
 class MetroAPI:
 
@@ -243,17 +267,27 @@ class MetroAPI:
             return json.load(f)
         # return self.get_json('stations')
 
+    async def async_get_stations(self):
+        async with aiofiles.open('stations.json', 'r') as f:
+            content = await f.read()
+        return json.loads(content)
+
     def get_platforms(self):
         with open('platforms.json', 'r') as f:
             return json.load(f)
         # return self.get_json('stations/platforms')
 
+    async def async_get_platforms(self):
+        async with aiofiles.open('platforms.json', 'r') as f:
+            content = await f.read()
+        return json.loads(content)
+
 
 def main():
-    requests_cache.install_cache('metro_cache')
+    # requests_cache.install_cache('metro_cache')
     m = MetroNetwork()
     m.update()
     m.print_map()
-    
+
 if __name__ == '__main__':
     main()

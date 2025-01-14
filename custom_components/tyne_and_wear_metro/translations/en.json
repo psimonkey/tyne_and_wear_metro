@@ -1,0 +1,27 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "metro_item_type": "Item type"
+                }
+            },
+            "station": {
+                "data": {
+                    "code": "Station"
+                }
+            },
+            "platform": {
+                "data": {
+                    "platform": "Platform"
+                }
+            }
+        },
+        "error": {
+            "unknown": "Unknown error occurred."
+        },
+        "abort": {
+            "already_configured": "This entry is already configured."
+        }
+    }
+}

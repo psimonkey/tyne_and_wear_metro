@@ -1,0 +1,15 @@
+{
+  "domain": "tyne_and_wear_metro",
+  "name": "Tyne and Wear Metro",
+  "version": "0.0.1",
+  "codeowners": [
+    "@psimonkey"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/psimonkey/tyne_and_wear_metro",
+  "integration_type": "device",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/psimonkey/tyne_and_wear_metro",
+  "requirements": []
+}
