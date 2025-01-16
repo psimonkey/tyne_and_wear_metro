@@ -18,10 +18,18 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
 
     config_entry: MetroConfigEntry
 
+    def get_platforms(self):
+        for platform in self.config_entry.data['platforms']:
+            yield platform
+
     async def _async_update_data(self) -> Any:
-        try:
-            times = await self.config_entry.runtime_data.api.get_times(self.config_entry.data.get('code'), self.config_entry.data.get('platform'))
-            _LOGGER.warning(f'async_step_station: {times}')
-            return times
-        except Exception as e:
-            raise UpdateFailed(f'Error updating MetroDataUpdateCoordinator: {e}')
+        # try:
+            data = self.data or {'platforms': {}}
+            _LOGGER.warning(f'async_step_station: {data}')
+            for platform in self.config_entry.data['platforms']:
+                times = await self.config_entry.runtime_data.api.get_times(platform['station_code'], platform['platform_code'])
+                data['platforms'][platform['name']] = times
+            _LOGGER.warning(f'async_step_station: {data}')
+            return data
+        # except Exception as e:
+        #     raise UpdateFailed(f'Error updating MetroDataUpdateCoordinator: {e}')

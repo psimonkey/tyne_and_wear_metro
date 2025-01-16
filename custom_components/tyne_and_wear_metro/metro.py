@@ -63,8 +63,11 @@ class MetroStation:
     def __init__(self, network: MetroNetwork, name, code):
         self._network, self.name, self.code = network, name, code
         self._platforms: dict[str, MetroPlatform] = {}
+        self._hydrated = False
 
     async def hydrate(self, platform_data):
+        if self._hydrated:
+            return
         platform_codes = []
         all_destination_codes = []
         for platform in platform_data:
@@ -80,9 +83,17 @@ class MetroStation:
             all_destination_codes += destination_codes
             self._platforms[f'{platform['platformNumber']}'] = MetroPlatform(self._network, self, platform['helperText'], [f'{platform['platformNumber']}'], destination_codes)
         self._platforms['all'] = MetroPlatform(self._network, self, 'All platforms', platform_codes, all_destination_codes)
+        self.hydrated = True
 
     async def get_times(self, platform_code, destination_code):
         return await self._platforms[platform_code].get_times(destination_code)
+
+    async def get_platforms_select(self):
+        available_platforms = []
+        for platform_code, platform in self._platforms.items():
+            available_platforms.append({'label': f'{self.name} platform {platform_code} ({platform.name})', 'value': f'{self.code}|{platform_code}'} )
+        return available_platforms
+
 
     def __repr__(self):
         return f'{self.code} | {self.name}\n' + '\n'.join(f'{code}: {platform}' for code, platform in self._platforms.items())
@@ -94,16 +105,26 @@ class MetroNetwork:
         self.api = MetroAPI()
         self._stations: dict[str, MetroStation] = {}
         self._trains: dict[str, MetroTrain] = {}
+        self._hydrated = False
 
     async def hydrate(self):
+        if self._hydrated:
+            return
         platform_data = await self.api.async_get_platforms()
         station_data = await self.api.async_get_stations()
         self._stations = {code: MetroStation(self, station_name, code) for code, station_name in station_data.items()}
         for code, station in self._stations.items():
             await station.hydrate(platform_data[code])
+        self._hydrated = True
 
     async def get_times(self, station_code, platform_code, destination_code=None):
         return await self._stations[station_code].get_times(platform_code, destination_code)
+
+    async def get_platforms_select(self):
+        available_platforms = []
+        for code, station in self._stations.items():
+            available_platforms += await station.get_platforms_select()
+        return available_platforms
 
     def get_station_by_name(self, station_name: str) -> MetroStation:
         if station_name == 'St. James':
@@ -122,7 +143,7 @@ class MetroAPI:
     API_BASE = 'https://metro-rti.nexus.org.uk/api/'
 
     def __init__(self):
-        self._client = aiohttp.ClientSession()
+        pass
 
     @property
     def last_update(self):
@@ -133,10 +154,11 @@ class MetroAPI:
         return r.json()
 
     async def async_get_json(self, path):
-        async with self._client.request('GET', f'{self.API_BASE}{path}') as response:
-            response.raise_for_status()
-            j = await response.json()
-            return j
+        async with aiohttp.ClientSession() as session:
+            async with session.request('GET', f'{self.API_BASE}{path}') as response:
+                response.raise_for_status()
+                j = await response.json()
+        return j
 
     async def async_get_times(self, station_code, platform_number):
         return await self.async_get_json(f'times/{station_code}/{platform_number}')
@@ -165,8 +187,9 @@ class MetroAPI:
 async def main():
     m = MetroNetwork()
     await m.hydrate()
-    print(m)
-    print(await m.get_times('WTL', '1'))
+    print(await m.get_platforms_select())
+    # print(m)
+    # print(await m.get_times('WTL', '1'))
 
 if __name__ == '__main__':
     asyncio.run(main())

@@ -20,11 +20,15 @@ if TYPE_CHECKING:
     from .data import MetroConfigEntry
 
 async def async_setup_entry(hass: HomeAssistant, entry: MetroConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
+    coordinator = entry.runtime_data.coordinator
+    coordinator.data['platforms'] = {}
     async_add_entities([
         MetroPlatformSensor(
-            coordinator=entry.runtime_data.coordinator,
-        )]
-    )
+            platform=platform,
+            coordinator=coordinator,
+        )
+        for platform in coordinator.get_platforms()
+    ])
 
 
 class MetroPlatformSensor(CoordinatorEntity, SensorEntity):
@@ -32,9 +36,13 @@ class MetroPlatformSensor(CoordinatorEntity, SensorEntity):
     coordinator: MetroDataUpdateCoordinator
     _attr_icon = "mdi:train-car-passenger-door"
 
-    def __init__(self, coordinator: MetroDataUpdateCoordinator) -> None:
+    def __init__(self, platform, coordinator: MetroDataUpdateCoordinator) -> None:
         super().__init__(coordinator)
-        self._attr_unique_id = coordinator.config_entry.entry_id
+        self._attr_name = f'{platform['name']}'
+        self._attr_unique_id = f'{platform['name']}'
+        self._attr_station_code = f'{platform['station_code']}'
+        self._attr_platform_code = f'{platform['platform_code']}'
+        self._attr_destination_code = f'{platform['destination_code']}'
         self._attr_device_info = DeviceInfo(
             identifiers={
                 (
@@ -43,7 +51,6 @@ class MetroPlatformSensor(CoordinatorEntity, SensorEntity):
                 ),
             },
         )
-        self._attr_name = f"{coordinator.config_entry.data['station']} platform {coordinator.config_entry.data['platform']}"
 
     @property
     def state(self) -> str:
@@ -51,4 +58,4 @@ class MetroPlatformSensor(CoordinatorEntity, SensorEntity):
 
     @property
     def extra_state_attributes(self):
-        return self.coordinator.data
+        return self.coordinator.data['platforms'].get(self._attr_unique_id, {})
