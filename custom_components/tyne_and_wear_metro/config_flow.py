@@ -24,8 +24,7 @@ class MetroConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         errors: dict[str, str] = {}
         await self._api.hydrate()
-        _LOGGER.warning(f'async_step_user: {self._data}')
-
+        # _LOGGER.warning(f'async_step_user: {self._data}')
         schema = {
             vol.Required('new_platform_entry', default='WTL|1'): selector({
                 "select": {
@@ -42,7 +41,7 @@ class MetroConfigFlow(ConfigFlow, domain=DOMAIN):
             'platform_code': platform_code,
             'destination_code': None,
         }]
-        _LOGGER.warning(f'async_step_user end: {self._data}')
+        # _LOGGER.warning(f'async_step_user end: {self._data}')
         return self.async_create_entry(title=f"Tyne and Wear Metro", data=self._data)
 
     # async def async_step_station(self, user_input: dict[str, Any]) -> ConfigFlowResult:

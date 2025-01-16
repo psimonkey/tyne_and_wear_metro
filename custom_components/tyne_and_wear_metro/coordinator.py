@@ -4,9 +4,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from .const import DOMAIN, _LOGGER
 
-import datetime
+# import datetime
 
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 if TYPE_CHECKING:
@@ -23,13 +22,13 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
             yield platform
 
     async def _async_update_data(self) -> Any:
-        # try:
+        try:
             data = self.data or {'platforms': {}}
-            _LOGGER.warning(f'async_step_station: {data}')
+            # _LOGGER.warning(f'async_step_station: {data}')
             for platform in self.config_entry.data['platforms']:
                 times = await self.config_entry.runtime_data.api.get_times(platform['station_code'], platform['platform_code'])
                 data['platforms'][platform['name']] = times
-            _LOGGER.warning(f'async_step_station: {data}')
+            # _LOGGER.warning(f'async_step_station: {data}')
             return data
-        # except Exception as e:
-        #     raise UpdateFailed(f'Error updating MetroDataUpdateCoordinator: {e}')
+        except Exception as e:
+            raise UpdateFailed(f'Error updating MetroDataUpdateCoordinator: {e}')

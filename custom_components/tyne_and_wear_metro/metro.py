@@ -2,12 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from datetime import datetime
-from PIL import Image, ImageDraw
-import aiofiles, aiohttp
-import asyncio
-import json
-
-import requests #, requests_cache
+import aiohttp
 
 
 class MetroException(Exception): pass
@@ -149,10 +144,6 @@ class MetroAPI:
     def last_update(self):
         return datetime.now()
 
-    def get_json(self, path):
-        r = requests.get(f'{self.API_BASE}{path}')
-        return r.json()
-
     async def async_get_json(self, path):
         async with aiohttp.ClientSession() as session:
             async with session.request('GET', f'{self.API_BASE}{path}') as response:
@@ -163,25 +154,11 @@ class MetroAPI:
     async def async_get_times(self, station_code, platform_number):
         return await self.async_get_json(f'times/{station_code}/{platform_number}')
 
-    def get_stations(self):
-        with open('stations.json', 'r') as f:
-            return json.load(f)
-        # return self.get_json('stations')
-
     async def async_get_stations(self):
-        async with aiofiles.open('stations.json', 'r') as f:
-            content = await f.read()
-        return json.loads(content)
-
-    def get_platforms(self):
-        with open('platforms.json', 'r') as f:
-            return json.load(f)
-        # return self.get_json('stations/platforms')
+        return await self.async_get_json('stations')
 
     async def async_get_platforms(self):
-        async with aiofiles.open('platforms.json', 'r') as f:
-            content = await f.read()
-        return json.loads(content)
+        return await self.async_get_json('stations/platforms')
 
 
 async def main():
@@ -192,4 +169,5 @@ async def main():
     # print(await m.get_times('WTL', '1'))
 
 if __name__ == '__main__':
+    import asyncio
     asyncio.run(main())
