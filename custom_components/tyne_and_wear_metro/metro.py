@@ -124,6 +124,8 @@ class MetroNetwork:
     def get_station_by_name(self, station_name: str) -> MetroStation:
         if station_name == 'St. James':
             return self._stations['SJM']
+        elif station_name == 'Monument':
+            return self._stations['MTS']
         for code, station in self._stations.items():
             if station.name == station_name:
                 return station
