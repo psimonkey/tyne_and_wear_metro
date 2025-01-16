@@ -1,20 +1,17 @@
-"""Config flow for Tyne and Wear Metro integration."""
+"""Config flow for the Tyne and Wear Metro integration."""
 
 from __future__ import annotations
-import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
+from .const import DOMAIN, _LOGGER
 
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.helpers.selector import selector
 import voluptuous as vol
 
-from .const import DOMAIN
 from metro import MetroAPI
 
-_LOGGER = logging.getLogger(__name__)
 
-
-class TyneAndWearMetroConfigFlow(ConfigFlow, domain=DOMAIN):
+class MetroConfigFlow(ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 

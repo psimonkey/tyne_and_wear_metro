@@ -6,6 +6,7 @@
     "@psimonkey"
   ],
   "config_flow": true,
+  "single_config_entry": true,
   "dependencies": [],
   "documentation": "https://github.com/psimonkey/tyne_and_wear_metro",
   "integration_type": "device",
