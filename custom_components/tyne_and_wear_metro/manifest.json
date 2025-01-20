@@ -1,12 +1,12 @@
 {
   "domain": "tyne_and_wear_metro",
   "name": "Tyne and Wear Metro",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "codeowners": [
     "@psimonkey"
   ],
   "config_flow": true,
-  "single_config_entry": true,
+  "single_config_entry": false,
   "dependencies": [],
   "documentation": "https://github.com/psimonkey/tyne_and_wear_metro",
   "integration_type": "device",

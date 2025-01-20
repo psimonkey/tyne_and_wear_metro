@@ -4,47 +4,60 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from .const import DOMAIN, _LOGGER
 
-from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
+from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResult, OptionsFlow
+from homeassistant.data_entry_flow import FlowResult
+from homeassistant.core import callback
 from homeassistant.helpers.selector import selector
 import voluptuous as vol
 
 from .metro import MetroNetwork
 
+if TYPE_CHECKING:
+    from homeassistant.config_entries import ConfigEntry
 
 class MetroConfigFlow(ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
     def __init__(self):
-        self._data = {
-            'platforms': [],
-        }
+        self._data = {}
         self._api = MetroNetwork()
+
+    # @staticmethod
+    # @callback
+    # def async_get_options_flow(config_entry: ConfigEntry) -> MetroOptionsFlow:
+    #     return MetroOptionsFlow(config_entry)
 
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         errors: dict[str, str] = {}
         await self._api.hydrate()
-        # _LOGGER.warning(f'async_step_user: {self._data}')
+        if user_input is None:
+            user_input = {}
         schema = {
-            vol.Required('new_platform_entry', default='WTL|1'): selector({
+            vol.Required('start', default=user_input.get('start', 'MSN')): selector({
                 "select": {
-                    "options": await self._api.get_platforms_select(),
+                    "options": await self._api.get_station_select(),
+                },
+            }),
+            vol.Required('end', default=user_input.get('end', 'MTS')): selector({
+                "select": {
+                    "options": await self._api.get_station_select(user_input.get('start', None)),
                 },
             }),
         }
-        if user_input is None:
+        if user_input.get('start', 'MSN') == user_input.get('end', 'MTS'):
+            errors['end'] = 'Start and destination stations must be different.'
+        if user_input is None or user_input == {} or errors:
             return self.async_show_form(step_id="user", data_schema=vol.Schema(schema), errors=errors)
-        station_code, platform_code = user_input['new_platform_entry'].split('|')
-        self._data['platforms'] = [{
-            'name': f'metro_{station_code}_platform_{platform_code}',
-            'station_code': station_code,
-            'platform_code': platform_code,
-            'destination_code': None,
-        }]
-        # _LOGGER.warning(f'async_step_user end: {self._data}')
-        return self.async_create_entry(title=f"Tyne and Wear Metro", data=self._data)
+        self._data = {
+            'start': user_input['start'],
+            'platform': self._api.which_platform(user_input['start'], user_input['end']).code,
+            'end': user_input['end'],
+        }
+        start_name, end_name = self._api.get_station_by_code(user_input['start']).name, self._api.get_station_by_code(user_input['end']).name,
+        return self.async_create_entry(title=f"Metro from {start_name} to {end_name}", data=self._data)
 
-    # async def async_step_station(self, user_input: dict[str, Any]) -> ConfigFlowResult:
+    # async def async_step_destination(self, user_input: dict[str, Any]) -> ConfigFlowResult:
     #     errors: dict[str, str] = {}
     #     _LOGGER.warning(f'async_step_station: {self._data}')
     #     metro = MetroAPI()
@@ -83,3 +96,35 @@ class MetroConfigFlow(ConfigFlow, domain=DOMAIN):
     #     await self.async_set_unique_id(f"metro_platform_{self._data['code']}_{self._data['platform']}")
     #     self._abort_if_unique_id_configured()
     #     return self.async_create_entry(title=f"{self._data['station']} platform {self._data['platform']}", data=self._data)
+
+
+class MetroOptionsFlow(OptionsFlow):
+
+    VERSION = 1
+
+    def __init__(self, config_entry: ConfigEntry):
+        """Initialize options flow."""
+        self.config_entry = config_entry
+
+    async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
+        errors: dict[str, str] = {}
+        _LOGGER.warning(f'async_step_init: {self.config_entry}')
+        schema = {
+            vol.Required('new_platform_entry', default='WTL|1'): selector({
+                "select": {
+                    "options": await self.config_entry.runtime_data.api.get_platforms_select(),
+                },
+            }),
+        }
+        if user_input is None:
+            return self.async_show_form(step_id="init", data_schema=vol.Schema(schema), errors=errors)
+        station_code, platform_code = user_input['new_platform_entry'].split('|')
+        self.config_entry.data['platforms'].append({
+            'name': f'metro_{station_code}_platform_{platform_code}',
+            'station_code': station_code,
+            'platform_code': platform_code,
+            'destination_code': None,
+        })
+        self.hass.config_entries.async_update_entry(self.config_entry, data=self.config_entry.data)
+        _LOGGER.warning(f'async_step_init: {self.config_entry}')
+        return self.async_create_entry(title="", data={})

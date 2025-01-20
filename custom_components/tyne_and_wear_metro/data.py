@@ -7,12 +7,11 @@ from .const import DOMAIN, _LOGGER
 from dataclasses import dataclass
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.loader import Integration
 
 from .coordinator import MetroDataUpdateCoordinator
 
 if TYPE_CHECKING:
-    from .metro import MetroNetwork
+    from .metro import MetroNetwork, MetroStation, MetroPlatform
 
 type MetroConfigEntry = ConfigEntry[MetroData]
 
@@ -22,3 +21,7 @@ class MetroData:
     """Data for the Tyne and Wear Metro integration."""
     api: MetroNetwork
     coordinator: MetroDataUpdateCoordinator
+    start: str
+    platform: str
+    end: str
+

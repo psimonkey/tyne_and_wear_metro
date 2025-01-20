@@ -3,17 +3,8 @@
         "step": {
             "user": {
                 "data": {
-                    "metro_item_type": "Item type"
-                }
-            },
-            "station": {
-                "data": {
-                    "code": "Station"
-                }
-            },
-            "platform": {
-                "data": {
-                    "platform": "Platform"
+                    "start": "From station",
+                    "end": "To station"
                 }
             }
         },

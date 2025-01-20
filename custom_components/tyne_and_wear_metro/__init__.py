@@ -4,8 +4,6 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from .const import DOMAIN, _LOGGER
 
-from datetime import timedelta
-
 from homeassistant.const import Platform
 from homeassistant.loader import async_get_loaded_integration
 
@@ -23,17 +21,20 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 async def async_setup_entry(hass: HomeAssistant, entry: MetroConfigEntry) -> bool:
     """Set up Tyne and Wear Metro from a config entry."""
+    api=MetroNetwork()
+    await api.hydrate()
     coordinator = MetroDataUpdateCoordinator(
         hass,
-        _LOGGER,
         name=DOMAIN,
-        update_interval=timedelta(seconds=45),
+        api=api,
+        config_entry=entry,
     )
-    api = MetroNetwork()
-    await api.hydrate()
     entry.runtime_data = MetroData(
         api=api,
         coordinator=coordinator,
+        start=entry.data.get('start'), # type: ignore[assignment]
+        platform=entry.data.get('platform'), # type: ignore[assignment]
+        end=entry.data.get('end'), # type: ignore[assignment]
     )
     await coordinator.async_config_entry_first_refresh()
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
