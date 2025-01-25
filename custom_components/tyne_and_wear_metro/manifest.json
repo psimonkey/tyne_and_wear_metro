@@ -1,7 +1,7 @@
 {
   "domain": "tyne_and_wear_metro",
   "name": "Tyne and Wear Metro",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "codeowners": [
     "@psimonkey"
   ],

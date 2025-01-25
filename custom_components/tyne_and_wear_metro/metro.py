@@ -57,7 +57,7 @@ class MetroTrain:
         return data
 
     def __repr__(self):
-        return f'Train {self.trn} for {self.destination} due in {self.dueIn} minutes'
+        return f'[{self.trn}] for {self.destination} in {self.dueIn} mins'
 
 
 class MetroPlatform:
@@ -233,7 +233,7 @@ class MetroNetwork:
     #     return available_platforms
 
     def which_platform(self, from_station, to_station):
-        print(from_station, to_station, end=' ')
+        # print(from_station, to_station, end=' ')
         # Both stations are on the same line, so we just need to figure out which direction
         if (from_station in self.GREEN_LINE and to_station in self.GREEN_LINE) or (from_station in self.YELLOW_LINE and to_station in self.YELLOW_LINE):
             if from_station in self.GREEN_LINE and to_station in self.GREEN_LINE:
@@ -257,6 +257,11 @@ class MetroNetwork:
             elif from_station in ('MAN', 'BYK', 'CRD', 'WKG', 'WSD', 'HDR', 'HOW', 'PCM', 'MWL', 'NSH', 'TYN', 'CUL'):
                 platform_number = '2'
 
+        if from_station == 'MTW':
+            if platform_number == '1':
+                platform_number = '3'
+            else:
+                platform_number = '4'
         return self._stations[from_station]._platforms[platform_number]
 
     def get_station_by_code(self, station_code: str) -> MetroStation:
