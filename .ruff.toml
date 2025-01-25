@@ -15,6 +15,9 @@ ignore = [
     "ISC001", # incompatible with formatter
 ]
 
+[format]
+quote-style = "single"
+
 [lint.flake8-pytest-style]
 fixture-parentheses = false
 
@@ -23,4 +26,3 @@ keep-runtime-typing = true
 
 [lint.mccabe]
 max-complexity = 25
-quote-style = "single"
