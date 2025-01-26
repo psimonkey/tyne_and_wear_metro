@@ -4,17 +4,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from homeassistant.components.sensor import SensorEntity, SensorEntityDescription
-
-# from datetime import timedelta
-from homeassistant.core import HomeAssistant  # , callback
+from homeassistant.components.sensor import SensorEntity
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
-
-# from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import _LOGGER  # noqa: F401
 from .coordinator import MetroDataUpdateCoordinator
 from .metro import MetroPlatform
 
@@ -76,10 +71,6 @@ class MetroPlatformSensor(MetroSensor):
         self._attr_platform_code = platform.platform_code
         self._attr_platform_description = platform.platform_description
         self._attr_station_name = platform.station.station_name
-        self.coordinator.subscribe(
-            self._attr_station_code,
-            self._attr_platform_code,
-        )
 
     @property
     def state(self) -> str | None:
@@ -98,13 +89,9 @@ class MetroPlatformSensor(MetroSensor):
             ),
         }
 
-    async def async_turn_on(self, **kwargs):
-        """Turn the light on.
-
-        Example method how to request data updates.
-        """
-        # Do the turning on.
-        # ...
-
-        # Update the data
+    async def async_update(self, **kwargs):
+        self.coordinator.subscribe(
+            self._attr_station_code,
+            self._attr_platform_code,
+        )
         await self.coordinator.async_request_refresh()

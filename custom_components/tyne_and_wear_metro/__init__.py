@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 
 from homeassistant.const import Platform
 
-from .const import _LOGGER, DOMAIN  # noqa: F401
+from .const import DOMAIN
 from .coordinator import MetroDataUpdateCoordinator
 from .data import MetroData
 from .metro import MetroNetwork

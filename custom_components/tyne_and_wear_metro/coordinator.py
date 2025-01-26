@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import _LOGGER
-from .metro import MetroNetwork  # , MetroStation, MetroPlatform
+from .metro import MetroNetwork
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
@@ -34,9 +34,9 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
             _LOGGER,
             name=name,
             config_entry=config_entry,
-            # update_method=None,
-            # update_interval=None,
-            update_interval=timedelta(seconds=45),
+            update_method=None,
+            update_interval=None,
+            # update_interval=timedelta(seconds=45),
             always_update=False,
         )
         self.api = api
@@ -53,7 +53,7 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
         data = self.data or {}
         try:
             now = datetime.now()
-            too_old = timedelta(minutes=60)
+            too_old = timedelta(minutes=30)
             data["subscriptions"] = [
                 (station_code, platform_code, subscription_time)
                 for station_code, platform_code, subscription_time in data[
@@ -69,9 +69,8 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
                     for train in self.api.list_trains(station_code, platform_code)
                 ]
             data["last_update"] = datetime.now()
-        except Exception as e:  # noqa: BLE001, TRY203
-            raise e  # noqa: TRY201
-            raise UpdateFailed(f"Error updating MetroDataUpdateCoordinator: {e}")  # noqa: B904
+        except Exception as e:  # noqa: BLE001
+            raise UpdateFailed(f"Error updating MetroDataUpdateCoordinator: {e}")
         return data
 
     def subscribe(self, station_code: str, platform_code: str) -> None:

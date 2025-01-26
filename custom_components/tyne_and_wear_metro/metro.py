@@ -221,7 +221,7 @@ class MetroAPI:
         self.last_update = datetime.now()
 
     async def async_get_json(self, path):
-        async with aiohttp.ClientSession() as session:
+        async with aiohttp.ClientSession() as session:  # noqa: SIM117
             async with session.request("GET", f"{self.API_BASE}{path}") as response:
                 response.raise_for_status()
                 j = await response.json()
