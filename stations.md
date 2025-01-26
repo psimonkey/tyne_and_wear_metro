@@ -1,37 +1,8 @@
-# https://www.home-assistant.io/integrations/default_config/
-assist_pipeline:
-backup:
-bluetooth:
-config:
-conversation:
-dhcp:
-energy:
-#go2rtc:
-history:
-homeassistant_alerts:
-cloud:
-image_upload:
-logbook:
-media_source:
-mobile_app:
-my:
-ssdp:
-stream:
-# sun:
-usb:
-webhook:
-zeroconf:
+# Stations
 
-# https://www.home-assistant.io/integrations/homeassistant/
-homeassistant:
-  debug: true
+Add this to your config.
 
-# https://www.home-assistant.io/integrations/logger/
-logger:
-  default: info
-  logs:
-    custom_components.integration_blueprint: debug
-
+```yaml
 zone:
   - name: Airport Metro Station
     latitude: 55.0357666015625
@@ -452,71 +423,4 @@ zone:
     radius: 70
     passive: true
     icon: mdi:alpha-m-box-outline
-
-input_select:
-  show_metro_station_simon_key:
-    name: Show Metro Station Simon Key
-    initial: Nearest
-    icon: mdi:alpha-m-box-outline
-    options:
-      - Nearest
-      - Airport
-      - Bede
-      - Bank Foot
-      - Benton
-      - Byker
-      - Brockley Whins
-      - Callerton Parkway
-      - Central
-      - Chichester
-      - Chillingham Road
-      - Cullercoats
-      - East Boldon
-      - Fawdon
-      - Felling
-      - Fellgate
-      - Four Lane Ends
-      - Gateshead
-      - Gateshead Stadium
-      - Haymarket
-      - Hadrian Road
-      - Hebburn
-      - Howdon
-      - Heworth
-      - Ilford Road
-      - Jarrow
-      - Jesmond
-      - Kingston Park
-      - Longbenton
-      - Manors
-      - Millfield
-      - Monkseaton
-      - St Peters
-      - Monument
-      - Meadow Well
-      - Northumberland Park
-      - North Shields
-      - Pallion
-      - Percy Main
-      - Park Lane
-      - Pelaw
-      - Palmersville
-      - Regent Centre
-      - Seaburn
-      - Stadium of Light
-      - South Gosforth
-      - South Hylton
-      - St James
-      - Simonside
-      - Shiremoor
-      - South Shields
-      - Sunderland
-      - Tyne Dock
-      - Tynemouth
-      - University
-      - Wansbeck Road
-      - West Jesmond
-      - Walkergate
-      - West Monkseaton
-      - Wallsend
-      - Whitley Bay
+```

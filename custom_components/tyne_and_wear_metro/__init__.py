@@ -1,19 +1,19 @@
 """The Tyne and Wear Metro integration."""
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any
-from .const import DOMAIN, _LOGGER
+
+from typing import TYPE_CHECKING
 
 from homeassistant.const import Platform
-from homeassistant.loader import async_get_loaded_integration
 
+from .const import _LOGGER, DOMAIN  # noqa: F401
 from .coordinator import MetroDataUpdateCoordinator
 from .data import MetroData
-
 from .metro import MetroNetwork
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
+
     from .data import MetroConfigEntry
 
 PLATFORMS: list[Platform] = [Platform.SENSOR]
@@ -21,7 +21,7 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 
 async def async_setup_entry(hass: HomeAssistant, entry: MetroConfigEntry) -> bool:
     """Set up Tyne and Wear Metro from a config entry."""
-    api=MetroNetwork()
+    api = MetroNetwork()
     await api.hydrate()
     coordinator = MetroDataUpdateCoordinator(
         hass,
@@ -32,9 +32,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: MetroConfigEntry) -> boo
     entry.runtime_data = MetroData(
         api=api,
         coordinator=coordinator,
-        start=entry.data.get('start'), # type: ignore[assignment]
-        platform=entry.data.get('platform'), # type: ignore[assignment]
-        end=entry.data.get('end'), # type: ignore[assignment]
     )
     await coordinator.async_config_entry_first_refresh()
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)

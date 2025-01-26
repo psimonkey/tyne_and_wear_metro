@@ -1,17 +1,19 @@
 """DataUpdateCoordinator for the Tyne and Wear Metro integration."""
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any
-from .const import _LOGGER
 
-from datetime import timedelta
+from collections import defaultdict
+from datetime import datetime, timedelta
+from typing import TYPE_CHECKING, Any
 
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
+from .const import _LOGGER
 from .metro import MetroNetwork  # , MetroStation, MetroPlatform
 
 if TYPE_CHECKING:
     from homeassistant.core import HomeAssistant
+
     from .data import MetroConfigEntry
 
 
@@ -32,45 +34,58 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
             _LOGGER,
             name=name,
             config_entry=config_entry,
+            # update_method=None,
+            # update_interval=None,
             update_interval=timedelta(seconds=45),
+            always_update=False,
         )
         self.api = api
-        self.data = {}
+        self.data = {
+            "last_update": self.api.last_update,
+            "trains": defaultdict(lambda: defaultdict(list)),
+            "subscriptions": [],
+        }
 
     async def _async_setup(self) -> None:
         await self.api.hydrate()
-        self.api.subscribe(
-            self.config_entry.runtime_data.start,
-            self.config_entry.runtime_data.platform,
-            self.config_entry.runtime_data.end,
-        )
 
     async def _async_update_data(self) -> Any:
+        data = self.data or {}
         try:
-            data = self.data or {}
-            await self.api.update(
-                self.config_entry.runtime_data.start,
-                self.config_entry.runtime_data.platform,
-            )
-            data["last_update"] = self.api.last_update
-            return data
-        except Exception as e:
-            raise e
-            raise UpdateFailed(f"Error updating MetroDataUpdateCoordinator: {e}")
+            now = datetime.now()
+            too_old = timedelta(minutes=60)
+            data["subscriptions"] = [
+                (station_code, platform_code, subscription_time)
+                for station_code, platform_code, subscription_time in data[
+                    "subscriptions"
+                ]
+                if now - subscription_time <= too_old
+            ]
+            data["trains"] = defaultdict(lambda: defaultdict(list))
+            for station_code, platform_code, _ in data["subscriptions"]:
+                await self.api.update(station_code, platform_code)
+                data["trains"][station_code][platform_code] = [
+                    train.as_dict(station_code, platform_code)
+                    for train in self.api.list_trains(station_code, platform_code)
+                ]
+            data["last_update"] = datetime.now()
+        except Exception as e:  # noqa: BLE001, TRY203
+            raise e  # noqa: TRY201
+            raise UpdateFailed(f"Error updating MetroDataUpdateCoordinator: {e}")  # noqa: B904
+        return data
 
-    def next_train_description(
-        self, from_station: str, from_platform: str, to_station: str, offset: int = 0
-    ) -> str | None:
-        return self.api.next_train_description(
-            from_station, from_platform, to_station, offset
-        )
+    def subscribe(self, station_code: str, platform_code: str) -> None:
+        self.data["subscriptions"].append((station_code, platform_code, datetime.now()))
 
-    def platform_description(
-        self, from_station: str, from_platform: str, to_station: str
-    ) -> str | None:
-        return self.api.platform_description(from_station, from_platform, to_station)
+    def next_train(self, station_code: str, platform_code: str) -> str:
+        try:
+            train = self.data["trains"][station_code][platform_code][0]
+            return f"{train['trn']} For {train['destination_name']} in {train['due_in']} mins"
+        except (IndexError, KeyError) as e:  # noqa: F841
+            return "Unknown"
 
-    def trains(
-        self, from_station: str, from_platform: str, to_station: str
-    ) -> list[dict[str, str]]:
-        return self.api.trains(from_station, from_platform, to_station)
+    def trains(self, station_code: str, platform_code: str) -> list[dict[str, str]]:
+        try:
+            return self.data["trains"][station_code][platform_code]
+        except (IndexError, KeyError) as e:  # noqa: F841
+            return []
