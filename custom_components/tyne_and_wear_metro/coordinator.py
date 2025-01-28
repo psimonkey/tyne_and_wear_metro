@@ -61,8 +61,15 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
                 ]
                 if now - subscription_time <= too_old
             ]
-            data["trains"] = defaultdict(lambda: defaultdict(list))
-            for station_code, platform_code, _ in data["subscriptions"]:
+            to_refresh = [
+                (station_code, platform_code)
+                for station_code, platform_code, _ in data["subscriptions"]
+            ]
+            for station_code, platform_data in data["trains"].items():
+                for platform_code in platform_data:
+                    if (station_code, platform_code) not in to_refresh:
+                        data["trains"][station_code][platform_code] = []
+            for station_code, platform_code in to_refresh:
                 await self.api.update(station_code, platform_code)
                 data["trains"][station_code][platform_code] = [
                     train.as_dict(station_code, platform_code)
