@@ -50,7 +50,8 @@ class MetroTrain:
         self.last_event_time = datetime.fromisoformat(train_data["lastEventTime"])
         self._data[platform.station.station_code][platform.platform_code] = {
             "due_in": train_data["dueIn"],
-            "due_time": train_data["actualPredictedTime"],
+            "due_time": datetime.fromisoformat(train_data["actualPredictedTime"]),
+            "scheduled_time": datetime.fromisoformat(train_data["actualScheduledTime"]),
         }
 
     def focus(self, station_code: str, platform_code: str) -> tuple[str, str]:
@@ -74,6 +75,20 @@ class MetroTrain:
             "due_time"
         ]
 
+    @property
+    def scheduled_time(self):
+        return self._data[self._focus_station_code][self._focus_platform_code][
+            "scheduled_time"
+        ]
+
+    @property
+    def last_update(self):
+        return (
+            self.network.stations[self._focus_station_code]
+            .platforms[self._focus_platform_code]
+            .last_update
+        )
+
     def as_dict(
         self, station_code: str | None = None, platform_code: str | None = None
     ) -> dict[str, str]:
@@ -84,8 +99,13 @@ class MetroTrain:
             "line": self.line,
             "destination_name": self.destination.station_name,
             "destination_code": self.destination.station_code,
+            "last_update": self.last_update,
+            "last_event": self.last_event,
+            "last_event_location": self.last_event_location,
+            "last_event_time": self.last_event_time,
             "due_in": self.due_in,
             "due_time": self.due_time,
+            "scheduled_time": self.scheduled_time,
         }
         if station_code is not None and platform_code is not None:
             self.focus(was_station, was_platform)
@@ -106,6 +126,7 @@ class MetroPlatform:
             platform_code,
         )
         self.arrivals: list[MetroTrain] = []
+        self.last_update = self.network.last_update
 
     async def update(self):
         self.arrivals = []
@@ -119,6 +140,7 @@ class MetroPlatform:
                 train = MetroTrain(self.network, self, time)
             self.arrivals.append(train)
         self.arrivals.sort(key=lambda x: x.due_in)
+        self.last_update = self.network.last_update
 
     def list_trains(self):
         yield from self.arrivals
@@ -133,6 +155,7 @@ class MetroStation:
         )
         self.platforms: dict[str, MetroPlatform] = {}
         self._hydrated = False
+        self.last_update = self.network.last_update
 
     async def hydrate(self, platform_data):
         if self._hydrated:
@@ -145,9 +168,11 @@ class MetroStation:
                 f"{platform['platformNumber']}",
             )
         self.hydrated = True
+        self.last_update = self.network.last_update
 
     async def update(self, platform_code: str):
         await self.platforms[platform_code].update()
+        self.last_update = self.network.last_update
 
     def list_platforms(self):
         yield from self.platforms.values()
@@ -163,10 +188,7 @@ class MetroNetwork:
         self.trains: dict[str, MetroTrain] = {}
         self.name_to_code = {}
         self._hydrated = False
-
-    @property
-    def last_update(self):
-        return self.api.last_update
+        self.last_update = datetime.now()
 
     async def hydrate(self):
         if self._hydrated:
@@ -186,9 +208,11 @@ class MetroNetwork:
         for station_code, station in self.stations.items():
             await station.hydrate(platform_data[station_code])
         self._hydrated = True
+        self.last_update = datetime.now()
 
     async def update(self, station_code: str, platform_code: str):
         await self.stations[station_code].update(platform_code)
+        self.last_update = datetime.now()
 
     def list_stations(self):
         yield from self.stations.values()

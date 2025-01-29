@@ -68,9 +68,9 @@ class MetroPlatformSensor(MetroSensor):
             coordinator=coordinator,
         )
         self._attr_station_code = platform.station.station_code
+        self._attr_station_name = platform.station.station_name
         self._attr_platform_code = platform.platform_code
         self._attr_platform_description = platform.platform_description
-        self._attr_station_name = platform.station.station_name
 
     @property
     def state(self) -> str | None:
@@ -82,8 +82,11 @@ class MetroPlatformSensor(MetroSensor):
     @property
     def extra_state_attributes(self):
         return {
-            "last_update": self.coordinator.data.get("last_update", "None"),
+            "station": self._attr_station_code,
+            "station_code": self._attr_station_name,
+            "platform": self._attr_platform_code,
             "description": self._attr_platform_description,
+            "last_update": self.coordinator.data.get("last_update", "None"),
             "trains": self.coordinator.trains(
                 self._attr_station_code, self._attr_platform_code
             ),

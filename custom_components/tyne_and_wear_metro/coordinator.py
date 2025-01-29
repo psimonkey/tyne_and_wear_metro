@@ -34,9 +34,9 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
             _LOGGER,
             name=name,
             config_entry=config_entry,
-            update_method=None,
-            update_interval=None,
-            # update_interval=timedelta(seconds=45),
+            # update_method=None,
+            # update_interval=None,
+            update_interval=timedelta(seconds=45),
             always_update=False,
         )
         self.api = api
