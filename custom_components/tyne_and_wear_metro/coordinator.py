@@ -37,13 +37,13 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
             # update_method=None,
             # update_interval=None,
             update_interval=timedelta(seconds=45),
-            always_update=False,
+            always_update=True,
         )
         self.api = api
         self.data = {
             "last_update": self.api.last_update,
             "trains": defaultdict(lambda: defaultdict(list)),
-            "subscriptions": [],
+            "refreshed": defaultdict(lambda: defaultdict(lambda: None)),
         }
 
     async def _async_setup(self) -> None:
@@ -52,36 +52,44 @@ class MetroDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self) -> Any:
         data = self.data or {}
         try:
-            now = datetime.now()
-            too_old = timedelta(minutes=30)
-            data["subscriptions"] = [
-                (station_code, platform_code, subscription_time)
-                for station_code, platform_code, subscription_time in data[
-                    "subscriptions"
-                ]
-                if now - subscription_time <= too_old
-            ]
-            to_refresh = [
-                (station_code, platform_code)
-                for station_code, platform_code, _ in data["subscriptions"]
-            ]
-            for station_code, platform_data in data["trains"].items():
-                for platform_code in platform_data:
-                    if (station_code, platform_code) not in to_refresh:
-                        data["trains"][station_code][platform_code] = []
-            for station_code, platform_code in to_refresh:
-                await self.api.update(station_code, platform_code)
-                data["trains"][station_code][platform_code] = [
-                    train.as_dict(station_code, platform_code)
-                    for train in self.api.list_trains(station_code, platform_code)
-                ]
-            data["last_update"] = datetime.now()
+            subscription_cutoff = datetime.now() - timedelta(minutes=30)
+            refresh_cutoff = datetime.now() - timedelta(seconds=30)
+            # _LOGGER.warning(f"{self.api.last_update} Starting refresh")
+            for platform_sensor in self.async_contexts():
+                station_code, platform_code, subscribed_time = (
+                    platform_sensor.refresh_params()
+                )
+                if subscribed_time is None or subscribed_time < subscription_cutoff:
+                    data["trains"][station_code][platform_code] = []
+                    data["refreshed"][station_code][platform_code] = None
+                elif (
+                    data["refreshed"][station_code][platform_code] is None
+                    or data["refreshed"][station_code][platform_code] < refresh_cutoff
+                ):
+                    # _LOGGER.warning(
+                    #     f"{self.api.last_update} Refreshing {station_code} platform {platform_code}"
+                    # )
+                    await self.api.update(station_code, platform_code)
+                    trains = [
+                        train.as_dict(station_code, platform_code)
+                        for train in self.api.list_trains(station_code, platform_code)
+                    ]
+                    # _LOGGER.warning(
+                    #     f"{self.api.last_update} Got {len(trains)} for {station_code} platform {platform_code}"
+                    # )
+                    data["trains"][station_code][platform_code] = trains
+                    data["refreshed"][station_code][platform_code] = (
+                        self.api.last_update
+                    )
+                # else:
+                #     _LOGGER.warning(
+                #         f"{self.api.last_update} Nothing to do for {station_code} platform {platform_code}"
+                #     )
+            data["last_update"] = self.api.last_update
+            # _LOGGER.warning(f"{self.api.last_update} Refresh finished")
         except Exception as e:  # noqa: BLE001
             raise UpdateFailed(f"Error updating MetroDataUpdateCoordinator: {e}")
         return data
-
-    def subscribe(self, station_code: str, platform_code: str) -> None:
-        self.data["subscriptions"].append((station_code, platform_code, datetime.now()))
 
     def next_train(self, station_code: str, platform_code: str) -> str:
         try:

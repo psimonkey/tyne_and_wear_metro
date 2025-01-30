@@ -23,7 +23,7 @@ class MetroTrain:
     destination: MetroStation
     last_event: str
     last_event_location: str
-    last_event_time: datetime
+    last_event_time: datetime | None
     _data: defaultdict[str, defaultdict[str, dict]]
 
     def __init__(
@@ -47,11 +47,11 @@ class MetroTrain:
         self.destination = self.network.get_station_by_name(train_data["destination"])
         self.last_event = train_data["lastEvent"]
         self.last_event_location = train_data["lastEventLocation"]
-        self.last_event_time = datetime.fromisoformat(train_data["lastEventTime"])
+        self.last_event_time = self.get_date(train_data["lastEventTime"])
         self._data[platform.station.station_code][platform.platform_code] = {
             "due_in": train_data["dueIn"],
-            "due_time": datetime.fromisoformat(train_data["actualPredictedTime"]),
-            "scheduled_time": datetime.fromisoformat(train_data["actualScheduledTime"]),
+            "due_time": self.get_date(train_data["actualPredictedTime"]),
+            "scheduled_time": self.get_date(train_data["actualScheduledTime"]),
         }
 
     def focus(self, station_code: str, platform_code: str) -> tuple[str, str]:
@@ -64,6 +64,13 @@ class MetroTrain:
             platform_code,
         )
         return was_station_code, was_platform_code
+
+    def get_date(self, date_data: str | None) -> datetime | None:
+        match date_data:
+            case str():
+                return datetime.fromisoformat(date_data)
+            case _:
+                return None
 
     @property
     def due_in(self):
